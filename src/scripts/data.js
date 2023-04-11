@@ -3,7 +3,7 @@ export let pokedex = [
         id: '001',
         name: 'bulbasaur',
         types: ['grass', 'poison'],
-        family: 0,
+        family: 1,
         img: '../src/assets/001.png',
         color: '#8bc6ac'
     },
@@ -11,7 +11,7 @@ export let pokedex = [
         id: '002',
         name: 'ivysaur',
         types: ['grass', 'poison'],
-        family: 0,
+        family: 1,
         img: '../src/assets/002.png',
         color: '#88bcbf'
     },
@@ -19,7 +19,7 @@ export let pokedex = [
         id: '003',
         name: 'venusaur',
         types: ['grass', 'poison'],
-        family: 0,
+        family: 1,
         img: '../src/assets/003.png',
         color: '#68aaa7'
     },
@@ -27,7 +27,7 @@ export let pokedex = [
         id: '004',
         name: 'charmander',
         types: ['fire'],
-        family: 1,
+        family: 2,
         img: '../src/assets/004.png',
         color: '#eaab7d'
     },
@@ -35,7 +35,7 @@ export let pokedex = [
         id: '005',
         name: 'charmeleon',
         types: ['fire'],
-        family: 1,
+        family: 2,
         img: '../src/assets/005.png',
         color: '#e27f6e'
     },
@@ -43,7 +43,7 @@ export let pokedex = [
         id: '006',
         name: 'charizard',
         types: ['fire', 'flying'],
-        family: 1,
+        family: 2,
         img: '../src/assets/006.png',
         color: '#eea365'
     },
@@ -51,7 +51,7 @@ export let pokedex = [
         id: '007',
         name: 'squirtle',
         types: ['water'],
-        family: 2,
+        family: 3,
         img: '../src/assets/007.png',
         color: '#8fc4cf'
     },
@@ -59,7 +59,7 @@ export let pokedex = [
         id: '008',
         name: 'wartortle',
         types: ['water'],
-        family: 2,
+        family: 3,
         img: '../src/assets/008.png',
         color: '#afbddc'
     },
@@ -67,9 +67,30 @@ export let pokedex = [
         id: '009',
         name: 'blastoise',
         types: ['water'],
-        family: 2,
+        family: 3,
         img: '../src/assets/009.png',
         color: '#6e8cb4'
     },
-    
+    {
+        id: '019',
+        name: 'rattata',
+        types: ['normal'],
+        family: 7,
+        img: '../src/assets/009.png',
+        color: '##a286ad'
+    },
+    {
+        id: '020',
+        name: 'raticate',
+        types: ['normal'],
+        family: 7,
+        img: '../src/assets/009.png',
+        color: '#c08f4a'
+    }
+]
+
+const families = [
+    {
+        id: 0
+    }
 ]
