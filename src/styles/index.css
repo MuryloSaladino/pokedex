@@ -1,0 +1,36 @@
+header  {
+    width: 100%;
+
+    padding: 1.5rem;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+header .star-svg    {
+    width: 50px;
+    height: 50px;
+}
+header .circle-svg    {
+    width: 50px;
+    height: 50px;
+}
+
+
+
+main    {
+    padding: 0.25rem;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
