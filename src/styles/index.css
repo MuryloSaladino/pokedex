@@ -19,9 +19,33 @@ header .star-svg    {
     width: 50px;
     height: 50px;
 }
-header .circle-svg    {
+header .caugth-button    {
     width: 50px;
     height: 50px;
+}
+
+#header__search-bar {
+    width: 300px;
+    height: 50px;
+
+    padding: 5px;
+    border: solid 1px black;
+    border-radius: 25px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#header__search-bar input {
+    width: 70%;
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    font-size: 1rem;
+
+    justify-self: center;
 }
 
 

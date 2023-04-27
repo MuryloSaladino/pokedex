@@ -28,7 +28,14 @@ span    {
     width: 25px;
     height: 25px;
 }
-.circle-svg   {
+.star__path-1:hover{
+    fill: black;
+    cursor: pointer;
+}
+.caugth-button {
     width: 25px;
     height: 25px;
+
+    border: 2px solid black;
+    border-radius: 50%;
 }
