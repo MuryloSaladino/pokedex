@@ -9,14 +9,14 @@ export async function renderPokemon(endPoint, offset = 1)  {
         let poke = await getThisPokemon(i)
         
         container.insertAdjacentHTML('beforeend', `
-            <div id="${poke.id}-${poke.name}" class="poke-card">
+            <div id="${poke.id}-${poke.name}" class="poke-card fade-in">
                 <div class="info-div">
                     <div class="name-div">
-                        <span>#${poke.id.toString().length === 1 ? '00' + poke.id : poke.id.toString().length === 2 ? '0' + poke.id : poke.id}</span>
-                        <h2>${poke.name.replace(`${poke.name[0]}`, `${poke.name[0].toUpperCase()}`)}</h2>
+                        <h2 class="text-2xl font-thin">#${poke.id.toString().length === 1 ? '00' + poke.id : poke.id.toString().length === 2 ? '0' + poke.id : poke.id}</h2>
+                        <h2 class="text-2xl">${poke.name.replace(`${poke.name[0]}`, `${poke.name[0].toUpperCase()}`)}</h2>
                         <div class="filters-div">
-                            <img class="star-svg" src="../src/assets/star.svg">
-                            <div class="caugth-button"></div>
+                        <i class="fa-regular fa-star text-2xl text-black duration-300 star"></i>
+                        <i class="fa-regular fa-circle text-2xl text-black duration-300 caught"></i>
                         </div>
                     </div>
                     <div id="${poke.id}-types" class="types-div">

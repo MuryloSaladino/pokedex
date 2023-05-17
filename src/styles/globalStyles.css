@@ -1,4 +1,4 @@
-*   {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,47 +10,35 @@
 }
 
 
-h1  {
+h1{
     font-size: 2rem;
     font-weight: 500;
 }
-h2  {
+h2{
     font-size: 1.5rem;
     font-weight: 500;
 }
-span    {
+span{
     font-size: 1.25rem;
     font-weight: 400;
 }
 
 
-.star-svg   {
+i{
     cursor: pointer;
 }
-.star-svg:hover   {
-    background-image: url(../assets/star-fill.svg);
-    background-size: cover;
-}
-.is-favorite    {
-    background-image: url(../assets/star-fill.svg);
-    background-size: cover;
-}
 
 
-.caugth-button {
-    width: 21px;
-    height: 21px;
 
-    border: 1px solid black;
-    border-radius: 50%;
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
 
-    cursor: pointer;
-}
-.caugth-button:hover    {
-    background-image: url(../assets/poke-bg.svg);
-    background-size: cover;
-}
-.has-caugth {
-    background-image: url(../assets/poke-bg.svg);
-    background-size: cover;
+.fade-in{
+    animation: fadeIn 0.4s;
 }
