@@ -1,19 +1,24 @@
-import styles from './styles.module.css'
 import pokeball from '../../assets/pokeball.png'
-import { SearchInput } from '../subcomponents/SearchInput'
+import { SearchInput } from './SearchInput'
 import { CaughtFilter } from '../subcomponents/CaughtFilter'
+import { StyledHeader } from './styles'
+import { StyledImg } from './SearchInput/styles'
+import { useState } from 'react'
 
 export function Header() {
+
+    const [background, setBackground] = useState(false)
+    
     return(
-        <header className={styles.header}>
-            <div className={styles.logoDiv}>
-                <img className={styles.pokeball} src={pokeball} />
+        <StyledHeader bg={background} >
+            <div>
+                <StyledImg src={pokeball} width={50} />
                 <h1>Pokedex</h1>
             </div>
-            <div className={styles.filtersDiv}>
+            <div>
                 <CaughtFilter isMain={true}/>
             </div>
             <SearchInput/>
-        </header>
+        </StyledHeader>
     )
 }
