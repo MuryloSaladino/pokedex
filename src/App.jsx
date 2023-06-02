@@ -28,14 +28,16 @@ export function App() {
             })
     }, [])
 
+    const [filter, setFilter] = useState('')
+
     return(
         <>
             <ResetCSS/>
             <GlobalStyles/>
             <Animations/>
 
-            <Header pokeData={pokeData} />
-            <PokeCardContainer loading={loading} pokeData={pokeData}/>
+            <Header setFilter={setFilter} filter={filter}/>
+            <PokeCardContainer loading={loading} pokeData={pokeData} filter={filter} />
         </>
     )
 }

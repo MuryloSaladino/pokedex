@@ -5,7 +5,7 @@ export const StyledSearchDiv = styled.div`
     height: 50px;
 
     padding: 5px;
-    border: solid 1px var(--poke-grey8);
+    border: solid 2px var(--poke-grey9);
     border-radius: 25px;
 
     display: flex;

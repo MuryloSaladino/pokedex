@@ -6,9 +6,15 @@ import { StyledImg } from './SearchInput/styles'
 import { useState } from 'react'
 import { MainTitle } from '../../styles/typography'
 
-export function Header() {
+export function Header({setFilter, filter}) {
 
     const [background, setBackground] = useState(false)
+    const [scrollTop, setScrollTop] = useState(0)
+
+    document.querySelector('html').addEventListener('scroll', () => setScrollTop(document.querySelector('html').scrollTop))
+
+    if(scrollTop > 150 && !background) {setBackground(true)}
+    if(scrollTop < 150 && background) {setBackground(false)}
     
     return(
         <StyledHeader bg={background} >
@@ -19,7 +25,7 @@ export function Header() {
             <div>
                 <CaughtFilter isMain={true}/>
             </div>
-            <SearchInput/>
+            <SearchInput setFilter={setFilter} filter={filter} />
         </StyledHeader>
     )
 }

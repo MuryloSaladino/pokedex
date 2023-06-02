@@ -6,7 +6,7 @@ export const GlobalStyles = createGlobalStyle`
         font-family: 'M PLUS Rounded 1c', sans-serif;
         color: var(--poke-grey8);
 
-        max-height: 100vh;
+        height: 100vh;
         overflow: auto;
     }
 
@@ -22,4 +22,5 @@ export const GlobalStyles = createGlobalStyle`
         --poke-grey9: #212529;
         --poke-red: #ee4037;
     }
+
 `
