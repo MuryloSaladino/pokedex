@@ -4,6 +4,7 @@ import { CaughtFilter } from '../subcomponents/CaughtFilter'
 import { StyledHeader } from './styles'
 import { StyledImg } from './SearchInput/styles'
 import { useState } from 'react'
+import { MainTitle } from '../../styles/typography'
 
 export function Header() {
 
@@ -13,7 +14,7 @@ export function Header() {
         <StyledHeader bg={background} >
             <div>
                 <StyledImg src={pokeball} width={50} />
-                <h1>Pokedex</h1>
+                <MainTitle>Pokedex</MainTitle>
             </div>
             <div>
                 <CaughtFilter isMain={true}/>

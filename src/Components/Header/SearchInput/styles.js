@@ -21,6 +21,7 @@ export const StyledInput = styled.input`
     width: 70%;
     height: 100%;
 
+    background-color: transparent;
     border: none;
     outline: none;
 

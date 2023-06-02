@@ -4,8 +4,9 @@ export const StyledHeader = styled.header`
     width: 100%;
     height: 100px;
     background-color: ${({bg}) => bg ? 'var(--poke-grey2)' : 'transparent'};
+    backdrop-filter: blur(5px);
     padding: 20px 5px;
-    box-shadow: 0 0 20px rgba(0,0,0,.2);
+    box-shadow: 0 0 20px rgba(0,0,0,.3);
 
     display: flex;
     flex-wrap: wrap;

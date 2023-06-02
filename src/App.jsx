@@ -28,15 +28,13 @@ export function App() {
             })
     }, [])
 
-    console.log(pokeData)
-
     return(
         <>
             <ResetCSS/>
             <GlobalStyles/>
             <Animations/>
 
-            <Header/>
+            <Header pokeData={pokeData} />
             <PokeCardContainer loading={loading} pokeData={pokeData}/>
         </>
     )
