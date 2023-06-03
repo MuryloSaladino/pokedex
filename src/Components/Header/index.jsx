@@ -11,10 +11,12 @@ export function Header({setFilter, filter}) {
     const [background, setBackground] = useState(false)
     const [scrollTop, setScrollTop] = useState(0)
 
-    document.querySelector('html').addEventListener('scroll', () => setScrollTop(document.querySelector('html').scrollTop))
+    document.querySelector('html').addEventListener('wheel', () => setScrollTop(document.querySelector('html').scrollTop))
 
     if(scrollTop > 150 && !background) {setBackground(true)}
     if(scrollTop < 150 && background) {setBackground(false)}
+
+    console.log(scrollTop)
     
     return(
         <StyledHeader bg={background} >
