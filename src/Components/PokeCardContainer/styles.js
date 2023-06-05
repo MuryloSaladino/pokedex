@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const StyledList = styled.ul`
     width: 95%;
     max-width: 1200px;
-    min-height: 50vh;
 
     margin: 150px auto;
 
@@ -86,4 +85,38 @@ export const StyledType = styled.span`
     font-size: 1rem;
     font-weight: 600;
     color: var(--poke-grey8);
+`
+
+
+export const StyledButton = styled.button`
+    width: 15px;
+    height: 15px;
+
+    background-color: transparent;
+
+    background-image: ${({bg}) => bg ? 'url(./src/assets/pokeball.svg)' : 'none'};
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    border: solid 1px var(--poke-grey9);
+    border-radius: 50%;
+`
+
+export const StyledBlankButton = styled.button`
+    width: 15px;
+    height: 15px;
+
+    background-color: transparent;
+
+    background-image: ${({bg}) => bg ? 'url(./src/assets/blankstar.svg)' : 'url(./src/assets/star.svg)'};
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    border: none;
+
+    :hover{
+        filter: drop-shadow(0 0 20px #ffe94d)
+    }
 `

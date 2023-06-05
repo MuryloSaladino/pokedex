@@ -1,34 +1,31 @@
-import { useEffect, useRef } from "react";
-import { StyledBottomDiv, StyledListItem, StyledSpriteDiv, StyledTopRDiv, StyledTopLDiv, StyledType } from "../styles";
-import { useState } from "react";
-import { TextMedium, Title3, Title4 } from "../../../styles/typography";
+import { useEffect, useRef, useState} from "react";
+import { StyledBottomDiv, StyledListItem, StyledSpriteDiv, StyledTopRDiv, StyledTopLDiv, StyledType, StyledButton, StyledBlankButton } from "../styles.js";
+import { TextMedium, Title3 } from "../../../styles/typography";
 import { v4 as uuidv4 } from 'uuid'
+import { pokeAPI } from "../../../APIs/pokeAPI.js";
 
-export function PokeCard({url}) {
+export function PokeCard({name, caughtPokemon, favoritePokemon}) {
 
     const [pokeData, setPokeData] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
 
-    const [bgColor, setBgColor] = useState(null)
-    const canvasRef = useRef(null)
-
     useEffect(() => {
-        fetch(url)
-            .then(response => {
-                if(response.ok) {return response.json()}
-                throw response
-            })
-            .then(data => setPokeData(data))
-            .catch(() => {
+        async function getPokeData() {
+            try {
+                const get = (await pokeAPI.get(`/` + name)).data
+                setPokeData(get)
+            }
+            catch(error) {
+                console.log(error.message)
                 setError(true)
-                setPokeData(null)
-            })
-            .finally(() => {
-                setLoading(false)                    
-            })
+            }
+            finally {
+                setLoading(false)
+            }
+        }
+        getPokeData()
     }, [])
-
     
     if(loading) {
         return(
@@ -39,7 +36,7 @@ export function PokeCard({url}) {
     if(error) {
         return(
             <ListItem>Carregando</ListItem>
-            )
+        )
     }
 
     return(
@@ -47,14 +44,29 @@ export function PokeCard({url}) {
             <div>
                 <StyledTopLDiv>
                     <Title3>{pokeData.name.replace(`${pokeData.name[0]}`, `${pokeData.name[0].toUpperCase()}`)}</Title3>
-                    <TextMedium>#{pokeData.id.toString().length === 1 ? '00' + pokeData.id : pokeData.id.toString().length === 2 ? '0' + pokeData.id : pokeData.id}</TextMedium>
+                    <TextMedium>
+                        #{  
+                            pokeData.id.toString().length === 1 ?
+                                '00' + pokeData.id :
+                            pokeData.id.toString().length === 2 ?
+                                '0' + pokeData.id :
+                            pokeData.id
+                        }
+                    </TextMedium>
                 </StyledTopLDiv>
 
-                <StyledTopRDiv /* filtros */>
-
+                <StyledTopRDiv>
+                    <CaughtFilter
+                        name={name}
+                        caughtPokemon={caughtPokemon}
+                    />
+                    <FavoriteFilter
+                        name={name}
+                        favoritePokemon={favoritePokemon}
+                    />
                 </StyledTopRDiv>
 
-                <StyledBottomDiv /* types */>
+                <StyledBottomDiv>
                     {pokeData.types.map((type) => 
                         <StyledType key={uuidv4()}>{type.type.name}</StyledType>
                     )}
@@ -119,5 +131,51 @@ function ListItem({imageUrl, children}) {
             <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
             {children}
         </StyledListItem>
+    )
+}
+
+
+
+function CaughtFilter({name, caughtPokemon}) {
+
+    const [caught, setCaught] = useState(JSON.parse(localStorage.getItem('caughtPokemon').includes(name)) ? true : false)
+
+    return(
+        <StyledButton
+            onClick={ () =>{
+                if(caught) {
+                    setCaught(false)
+                    caughtPokemon.current = caughtPokemon.current.filter(pokemonName => pokemonName !== name)
+                    localStorage.setItem('caughtPokemon', JSON.stringify(caughtPokemon))
+                }else {
+                    setCaught(true)
+                    caughtPokemon.current = [...caughtPokemon.current, name]
+                    localStorage.setItem('caughtPokemon', JSON.stringify(caughtPokemon))
+                }
+            }}
+            bg={caught}
+        />
+    )
+}
+
+function FavoriteFilter({name, favoritePokemon}) {
+
+    const [favorite, setFavorite] = useState(JSON.parse(localStorage.getItem('favoritePokemon').includes(name)) ? true : false)
+
+    return(
+        <StyledBlankButton 
+        onClick={ () =>{
+            if(favorite) {
+                setFavorite(false)
+                favoritePokemon.current = favoritePokemon.current.filter(pokemonName => pokemonName !== name)
+                localStorage.setItem('favoritePokemon', JSON.stringify(favoritePokemon))
+            }else {
+                setFavorite(true)
+                favoritePokemon.current = [...favoritePokemon.current, name]
+                localStorage.setItem('favoritePokemon', JSON.stringify(favoritePokemon))
+            }
+        }}
+        bg={favorite}
+        />
     )
 }
