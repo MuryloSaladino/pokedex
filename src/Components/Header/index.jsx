@@ -4,6 +4,10 @@ import { StyledHeader, StyledCaughtButton, StyledImg, StyledSearchDiv, StyledInp
 import { useState } from 'react'
 import { MainTitle } from '../../styles/typography'
 
+import star from '../../assets/star.svg'
+import blankStar from '../../assets/blankstar.svg'
+import pokebg from '../../assets/pokeball.svg'
+
 export function Header({setFilter, filter}) {
 
     const [background, setBackground] = useState(false)
@@ -24,11 +28,15 @@ export function Header({setFilter, filter}) {
                 <StyledCaughtButton
                     filter={filter}
                     onClick={() => filter[1] ? setFilter([filter[0], false, false]) : setFilter([filter[0], true, false])}
-                />
+                >
+                    {filter[1] ? <StyledImg width={'100%'} src={pokebg} /> : null}
+                </StyledCaughtButton>
                 <StyledFavoriteButton
                     filter={filter}
                     onClick={() => filter[2] ? setFilter([filter[0], false, false]) : setFilter([filter[0], false, true])}
-                />
+                >
+                    {filter[2] ? <StyledImg width={'100%'} src={blankStar} /> : <StyledImg width={'100%'} src={star} />}
+                </StyledFavoriteButton>
             </div>
             <SearchInput setFilter={setFilter} filter={filter} />
         </StyledHeader>

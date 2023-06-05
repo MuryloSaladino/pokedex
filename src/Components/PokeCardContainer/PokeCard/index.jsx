@@ -4,6 +4,11 @@ import { TextMedium, Title3 } from "../../../styles/typography";
 import { v4 as uuidv4 } from 'uuid'
 import { pokeAPI } from "../../../APIs/pokeAPI.js";
 
+import star from '../../../assets/star.svg'
+import blankStar from '../../../assets/blankstar.svg'
+import pokebg from '../../../assets/pokeball.svg'
+import { StyledImg } from "../../Header/styles.js";
+
 export function PokeCard({name, caughtPokemon, favoritePokemon}) {
 
     const [pokeData, setPokeData] = useState(null)
@@ -153,8 +158,10 @@ function CaughtFilter({name, caughtPokemon}) {
                     localStorage.setItem('caughtPokemon', JSON.stringify(caughtPokemon))
                 }
             }}
-            bg={caught}
-        />
+            border={caught}
+        >
+            {caught ? <StyledImg width={'100%'} src={pokebg} /> : null}
+        </StyledButton>
     )
 }
 
@@ -164,18 +171,19 @@ function FavoriteFilter({name, favoritePokemon}) {
 
     return(
         <StyledBlankButton 
-        onClick={ () =>{
-            if(favorite) {
-                setFavorite(false)
-                favoritePokemon.current = favoritePokemon.current.filter(pokemonName => pokemonName !== name)
-                localStorage.setItem('favoritePokemon', JSON.stringify(favoritePokemon))
-            }else {
-                setFavorite(true)
-                favoritePokemon.current = [...favoritePokemon.current, name]
-                localStorage.setItem('favoritePokemon', JSON.stringify(favoritePokemon))
-            }
-        }}
-        bg={favorite}
-        />
+            onClick={ () =>{
+                if(favorite) {
+                    setFavorite(false)
+                    favoritePokemon.current = favoritePokemon.current.filter(pokemonName => pokemonName !== name)
+                    localStorage.setItem('favoritePokemon', JSON.stringify(favoritePokemon))
+                }else {
+                    setFavorite(true)
+                    favoritePokemon.current = [...favoritePokemon.current, name]
+                    localStorage.setItem('favoritePokemon', JSON.stringify(favoritePokemon))
+                }
+            }}
+        >
+            {favorite ? <StyledImg width={'100%'} src={blankStar} /> : <StyledImg width={'100%'} src={star} />}
+        </StyledBlankButton>
     )
 }

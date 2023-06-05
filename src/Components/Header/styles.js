@@ -31,7 +31,6 @@ export const StyledCaughtButton = styled.button`
     height: 30px;
 
     background-color: transparent;
-    background-image: ${({filter}) => filter[1] ? 'url(./src/assets/pokeball.svg)' : 'none'};
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -46,8 +45,6 @@ export const StyledFavoriteButton = styled.button`
     height: 30px;
 
     background-color: transparent;
-
-    background-image: ${({filter}) => filter[2] ? 'url(./src/assets/blankstar.svg)' : 'url(./src/assets/star.svg)'};
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

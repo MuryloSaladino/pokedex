@@ -16,8 +16,6 @@ export function App() {
 
     const caughtPokemon = useRef([])
     const favoritePokemon = useRef([])
-
-    console.log(favoritePokemon.current)
     
     useEffect(() => {
         async function getPokeData() {
