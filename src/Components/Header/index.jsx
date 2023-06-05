@@ -1,0 +1,48 @@
+import pokeball from '../../assets/pokeball.png'
+import search from '../../assets/search.svg'
+import { StyledHeader, StyledCaughtButton, StyledImg, StyledSearchDiv, StyledInput, StyledFavoriteButton } from './styles'
+import { useState } from 'react'
+import { MainTitle } from '../../styles/typography'
+
+export function Header({setFilter, filter}) {
+
+    const [background, setBackground] = useState(false)
+    const [scrollTop, setScrollTop] = useState(0)
+
+    window.addEventListener('scroll', () => setScrollTop(window.pageYOffset))
+
+    if(scrollTop > 100 && !background) {setBackground(true)}
+    if(scrollTop < 100 && background) {setBackground(false)}
+    
+    return(
+        <StyledHeader bg={background} >
+            <div>
+                <StyledImg src={pokeball} width={50} />
+                <MainTitle>Pokedex</MainTitle>
+            </div>
+            <div>
+                <StyledCaughtButton
+                    filter={filter}
+                    onClick={() => filter[1] ? setFilter([filter[0], false, false]) : setFilter([filter[0], true, false])}
+                />
+                <StyledFavoriteButton
+                    filter={filter}
+                    onClick={() => filter[2] ? setFilter([filter[0], false, false]) : setFilter([filter[0], false, true])}
+                />
+            </div>
+            <SearchInput setFilter={setFilter} filter={filter} />
+        </StyledHeader>
+    )
+}
+
+
+
+function SearchInput({ setFilter, filter }) {
+
+    return(
+        <StyledSearchDiv>
+            <StyledImg src={search} width={30} />
+            <StyledInput type="text" placeholder='Nome do pokémon...' onChange={(e) => setFilter([e.target.value, filter[1], filter[2]])} value={filter[0]}/>
+        </StyledSearchDiv>
+    )
+}
