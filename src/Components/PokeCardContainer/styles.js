@@ -89,27 +89,23 @@ export const StyledType = styled.span`
 
 
 export const StyledButton = styled.button`
-    width: 15px;
-    height: 15px;
+    width: 25px;
+    height: 25px;
 
     background-color: transparent;
-
-    background-image: ${({bg}) => bg ? 'url(./src/assets/pokeball.svg)' : 'none'};
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
 
-    border: solid 1px var(--poke-grey9);
+    border: ${({border}) => border ? 'none' : 'solid 1px var(--poke-grey9)'};
     border-radius: 50%;
 `
 
 export const StyledBlankButton = styled.button`
-    width: 15px;
-    height: 15px;
+    width: 25px;
+    height: 25px;
 
     background-color: transparent;
-
-    background-image: ${({bg}) => bg ? 'url(./src/assets/blankstar.svg)' : 'url(./src/assets/star.svg)'};
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
