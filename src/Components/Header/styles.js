@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const StyledHeader = styled.header`
     width: 100%;
-    height: 100px;
+    min-height: 100px;
     background-color: ${({bg}) => bg ? 'var(--poke-grey2)' : 'transparent'};
     backdrop-filter: blur(5px);
-    padding: 20px 5px;
+    padding: 10px 5px;
     box-shadow: 0 0 20px rgba(0,0,0,.3);
 
     display: flex;
@@ -23,6 +23,13 @@ export const StyledHeader = styled.header`
         display: flex;
         align-items: center;
         gap: 15px;
+    }
+
+    @media(max-width: 710px) {
+        gap: 10px;
+    }
+    @media(max-width: 320px) {
+        gap: 5px;
     }
 `
 
@@ -60,6 +67,7 @@ export const StyledSearchDiv = styled.div`
     width: 300px;
     height: 50px;
 
+    background-color: rgba(255,255,255,.5);
     padding: 5px;
     border: solid 2px var(--poke-grey9);
     border-radius: 25px;
@@ -83,7 +91,10 @@ export const StyledInput = styled.input`
 
     font-size: 1rem;
 
-    justify-self: center;
+    ::placeholder{
+        font-size: 1rem;
+        color: var(--poke-grey9);
+    }
 `
 
 export const StyledImg = styled.img`

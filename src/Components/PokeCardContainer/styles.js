@@ -4,7 +4,7 @@ export const StyledList = styled.ul`
     width: 95%;
     max-width: 1200px;
 
-    margin: 150px auto;
+    margin: 0 auto;
 
     list-style: none;
 
