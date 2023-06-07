@@ -8,15 +8,19 @@ import star from '../../assets/star.svg'
 import blankStar from '../../assets/blankstar.svg'
 import pokebg from '../../assets/pokeball.svg'
 
-export function Header({setFilter, filter}) {
+export function Header({setFilter, filter, headlineRef}) {
 
     const [background, setBackground] = useState(false)
     const [scrollTop, setScrollTop] = useState(0)
+    const [headlineHeight, setHeadlineHeight] = useState(300)
 
-    window.addEventListener('scroll', () => setScrollTop(window.pageYOffset))
+    window.addEventListener('scroll', () => {
+        setScrollTop(window.pageYOffset)
+        setHeadlineHeight(headlineRef.current.offsetHeight)
+    })
 
-    if(scrollTop > 100 && !background) {setBackground(true)}
-    if(scrollTop < 100 && background) {setBackground(false)}
+    if(scrollTop > headlineHeight && !background) {setBackground(true)}
+    if(scrollTop < headlineHeight && background) {setBackground(false)}
     
     return(
         <StyledHeader bg={background} >

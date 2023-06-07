@@ -5,6 +5,7 @@ import { GlobalStyles } from "./styles/Global"
 import { Animations } from "./styles/Animations"
 import { Header } from "./Components/Header"
 import { PokeCardContainer } from "./Components/PokeCardContainer"
+import { Headline } from "./Components/Headline"
 
 export function App() {
 
@@ -16,6 +17,8 @@ export function App() {
 
     const caughtPokemon = useRef([])
     const favoritePokemon = useRef([])
+
+    const headlineRef = useRef(null)
     
     useEffect(() => {
         async function getPokeData() {
@@ -46,6 +49,7 @@ export function App() {
         checkStorage()
     }, [])
 
+    console.log(headlineRef.current)
 
     return(
         <>
@@ -56,6 +60,11 @@ export function App() {
             <Header
                 setFilter={setFilter}
                 filter={filter}
+                headlineRef={headlineRef}
+            />
+
+            <Headline
+                headlineRef={headlineRef}
             />
 
             <PokeCardContainer
