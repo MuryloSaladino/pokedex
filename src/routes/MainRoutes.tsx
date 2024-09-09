@@ -12,7 +12,7 @@ export default function MainRoutes() {
                     element: <Home/>
                 },
                 {
-                    path: "/p/:id",
+                    path: "/p/:name",
                     element: <PokeDetail/>
                 },
             ])}
