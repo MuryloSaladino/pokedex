@@ -1,20 +1,39 @@
-import { Box } from "@mui/material";
-import { ReactNode, useEffect, useState } from "react";
+import { Box, Typography } from "@mui/material";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import PokeAPI from "../../service/PokeAPI";
 
 export default function PokeDetail():ReactNode {
 
     const { id } = useParams()
 
-    const [pokemonData, setPokemonData] = useState<any>()
+    const [pokeData, setPokeData] = useState<any>()
 
-    // useEffect(() => {
-    //     (async () => {
-    //         const response = 
-    //     })()
-    // }, [])
+    const getPokeData = useCallback(async () => {
+        const response = await PokeAPI.get(`/pokemon/${id}/`)
+        console.log(response.data)
+        setPokeData(response.data)
+    }, [id])
+
+    useEffect(() => {
+        getPokeData()
+    }, [])
 
     return(
-        <Box>Pokemon: { id }</Box>
+        <>
+            {
+                pokeData &&
+                <Box>
+                    <Typography variant="h3">#{ pokeData.id }</Typography>
+                    <Typography variant="h3">{ pokeData.name }</Typography>
+                    <Box 
+                        component="img"
+                        src={ pokeData.sprites.front_default } 
+                        alt={ pokeData.name }
+                        sx={{ width: 300 }}
+                    />
+                </Box>
+            }
+        </>
     )
 }
