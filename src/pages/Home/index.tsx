@@ -10,7 +10,7 @@ export default function Home():ReactNode {
 
     useEffect(() => {
         ( async () => {
-            const response = await PokeAPI.get('?limit=151&offset=0')
+            const response = await PokeAPI.get('/pokemon?limit=151&offset=0')
             console.log(response)
             setPokemons(response.data.results)
         })()
