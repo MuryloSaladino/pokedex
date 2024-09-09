@@ -1,5 +1,6 @@
-import { Box } from "@mui/material";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "../pages/Home";
+import PokeDetail from "../pages/PokeDetail";
 
 export default function MainRoutes() {
 
@@ -8,11 +9,11 @@ export default function MainRoutes() {
             router={createBrowserRouter([
                 {
                     path: "/",
-                    element: <Box>Home</Box>
+                    element: <Home/>
                 },
                 {
                     path: "/p/:id",
-                    element: <Box>Pokemon Detail</Box>
+                    element: <PokeDetail/>
                 },
             ])}
         />
