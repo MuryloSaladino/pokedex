@@ -10,6 +10,7 @@ export default function Home():ReactNode {
 
     const getPokemonData = useCallback(async () => {
         const response = await PokeAPI.get('/pokemon?limit=151&offset=0')
+        console.log(response);
         setPokemons(response.data.results)
     }, [])
 
@@ -21,10 +22,13 @@ export default function Home():ReactNode {
         <Stack gap={5} >
             <Typography variant="h3">Home</Typography>
 
-            <Grid container spacing={3} columnSpacing={12}>
-                {pokemons.map( (pokemon, i) => (
+            <Grid container spacing={3}>
+                {pokemons.map( pokemon => (
                     <Grid key={uuid()} size={{ xs:12, sm:6, md:4, lg:4, xl:3 }}>
-                        <PokeCard id={i+1} name={pokemon.name} />
+                        <PokeCard 
+                            id={pokemon.url.substring(34).replace("/", "")} 
+                            name={pokemon.name} 
+                        />
                     </Grid>
                 ))}
             </Grid>

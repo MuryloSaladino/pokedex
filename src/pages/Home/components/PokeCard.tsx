@@ -9,7 +9,7 @@ interface IPokeCardProps {
 export default function PokeCard({ id, name }:IPokeCardProps) {
 
     return(
-        <Link to={"/p/" + id}>
+        <Link to={"/p/" + name}>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Typography variant="h4">#{ id } { name }</Typography>
             </Box>
