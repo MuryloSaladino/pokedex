@@ -10,7 +10,6 @@ export default function Home():ReactNode {
 
     const getPokemonData = useCallback(async () => {
         const response = await PokeAPI.get('/pokemon?limit=151&offset=0')
-        console.log(response)
         setPokemons(response.data.results)
     }, [])
 

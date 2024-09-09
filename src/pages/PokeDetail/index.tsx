@@ -11,7 +11,6 @@ export default function PokeDetail():ReactNode {
 
     const getPokeData = useCallback(async () => {
         const response = await PokeAPI.get(`/pokemon/${id}/`)
-        console.log(response.data)
         setPokeData(response.data)
     }, [id])
 
