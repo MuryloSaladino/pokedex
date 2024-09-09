@@ -5,7 +5,7 @@ import PokeAPI from "../../service/PokeAPI";
 
 export default function PokeDetail():ReactNode {
 
-    const { id: name } = useParams()
+    const { name } = useParams()
 
     const [pokeData, setPokeData] = useState<any>()
 
