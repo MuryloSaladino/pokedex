@@ -1,5 +1,5 @@
 import { Grid2 as Grid, Stack, Typography } from "@mui/material";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import PokeAPI from "../../service/PokeAPI";
 import { v4 as uuid } from "uuid";
 import PokeCard from "./components/PokeCard";
@@ -8,12 +8,14 @@ export default function Home():ReactNode {
 
     const [pokemons, setPokemons] = useState<any[]>([])
 
+    const getPokemonData = useCallback(async () => {
+        const response = await PokeAPI.get('/pokemon?limit=151&offset=0')
+        console.log(response)
+        setPokemons(response.data.results)
+    }, [])
+
     useEffect(() => {
-        ( async () => {
-            const response = await PokeAPI.get('/pokemon?limit=151&offset=0')
-            console.log(response)
-            setPokemons(response.data.results)
-        })()
+        getPokemonData()
     }, [])
 
     return(
