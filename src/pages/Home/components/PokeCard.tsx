@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface IPokeCardProps {
     id: string | number;
@@ -8,8 +9,10 @@ interface IPokeCardProps {
 export default function PokeCard({ id, name }:IPokeCardProps) {
 
     return(
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Typography variant="h4">#{ id } { name }</Typography>
-        </Box>
+        <Link to={"/p/" + id}>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Typography variant="h4">#{ id } { name }</Typography>
+            </Box>
+        </Link>
     )
 }
