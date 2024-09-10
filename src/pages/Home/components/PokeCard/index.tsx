@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import PokeAPI from "../../../../service/PokeAPI";
 import { SPokeBox } from "./styles";
+import PokeAPI from "../../../../service/pokeAPI";
 
 interface IPokeCardProps {
     id: string | number;

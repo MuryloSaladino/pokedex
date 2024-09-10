@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { ReactNode, useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import PokeAPI from "../../service/PokeAPI";
+import PokeAPI from "../../service/pokeAPI";
 
 export default function PokeDetail():ReactNode {
 

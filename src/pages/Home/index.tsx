@@ -1,9 +1,9 @@
 import { Container, Grid2 as Grid, Stack } from "@mui/material";
 import { ReactNode, useCallback, useEffect, useState } from "react";
-import PokeAPI from "../../service/PokeAPI";
 import { v4 as uuid } from "uuid";
 import PokeCard from "./components/PokeCard";
 import { SMainTitle } from "./styles";
+import PokeAPI from "../../service/pokeAPI";
 
 export default function Home():ReactNode {
 
