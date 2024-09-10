@@ -77,7 +77,7 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
                 backgroundColor: color,
                 p: 1,
             }}>
-                <Typography variant="h4">#{ id } { name }</Typography>
+                <Typography variant="h4" color="textSecondary">#{ id } { name }</Typography>
                 <Box component="img" src={pokeData.sprites.front_default}/>
             </Box>
         </Link>
