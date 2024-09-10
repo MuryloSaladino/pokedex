@@ -72,6 +72,8 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
                 ref={canvasRef}
             />
             <Box sx={{
+                opacity: color ? 1 : 0,
+                transition: "0.5s",
                 display: "flex", 
                 justifyContent: "space-between",
                 backgroundColor: color,
