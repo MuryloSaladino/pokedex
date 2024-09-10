@@ -1,14 +1,13 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@font-face {
+    font-family: "Pokemon Solid";
+    src: url("/fonts/PokemonSolid.ttf");
 }
 
-ul, ol {
-    list-style: none;
+@font-face {
+    font-family: "Pokemon Hollow";
+    src: url("/fonts/PokemonSolid.ttf");
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+body {
+    /* font-family: "Nerko One", cursive; */
 }
