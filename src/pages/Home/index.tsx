@@ -1,8 +1,9 @@
-import { Container, Grid2 as Grid, Stack, Typography } from "@mui/material";
+import { Container, Grid2 as Grid, Stack } from "@mui/material";
 import { ReactNode, useCallback, useEffect, useState } from "react";
 import PokeAPI from "../../service/PokeAPI";
 import { v4 as uuid } from "uuid";
 import PokeCard from "./components/PokeCard";
+import { SMainTitle } from "./styles";
 
 export default function Home():ReactNode {
 
@@ -20,13 +21,9 @@ export default function Home():ReactNode {
     return(
         <Stack gap={5} >
             <Container maxWidth="xl">
-                <Typography 
+                <SMainTitle 
                     variant="h1"
-                    color="primary"
-                    textAlign="center"
-                    sx={{ '-webkit-text-stroke': "3px black" }}
-                    fontFamily="Pokemon Solid"
-                >Pokedéx</Typography>
+                >Pokedéx</SMainTitle>
 
                 <Grid container spacing={3} marginTop={10}>
                     {pokemons.map( pokemon => (

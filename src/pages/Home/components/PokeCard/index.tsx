@@ -1,7 +1,8 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useCallback, useEffect, useRef, useState } from "react";
-import PokeAPI from "../../../service/PokeAPI";
+import PokeAPI from "../../../../service/PokeAPI";
+import { SPokeBox } from "./styles";
 
 interface IPokeCardProps {
     id: string | number;
@@ -11,7 +12,7 @@ interface IPokeCardProps {
 export default function PokeCard({ id, name }:IPokeCardProps) {
 
     const [pokeData, setPokeData] = useState<any>()
-    const [color, setColor] = useState<string>("transparent")
+    const [color, setColor] = useState<string>()
     const canvasRef = useRef<HTMLCanvasElement>(null)
 
     const getPokeData = useCallback(async () => {
@@ -71,17 +72,10 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
                 component="canvas" 
                 ref={canvasRef}
             />
-            <Box sx={{
-                opacity: color ? 1 : 0,
-                transition: "0.5s",
-                display: "flex", 
-                justifyContent: "space-between",
-                backgroundColor: color,
-                p: 1,
-            }}>
+            <SPokeBox color={color}>
                 <Typography variant="h4" color="textSecondary">#{ id } { name }</Typography>
                 <Box component="img" src={pokeData.sprites.front_default}/>
-            </Box>
+            </SPokeBox>
         </Link>
     )
 }
