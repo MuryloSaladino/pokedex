@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { SPokeBox } from "./styles";
 import PokeAPI from "../../../../service/pokeAPI";
@@ -14,8 +14,10 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
     const [pokeData, setPokeData] = useState<any>()
     const [color, setColor] = useState<string>()
     const canvasRef = useRef<HTMLCanvasElement>(null)
+    const [loading, setLoading] = useState(false)
 
     const getPokeData = useCallback(async () => {
+        setLoading(true)
         const response = await PokeAPI.get(`/pokemon/${name}/`)
         setPokeData(response.data)
     }, [name])
@@ -58,6 +60,7 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
             }
             setColor(`rgba(${mostCommonColor[0]}, ${mostCommonColor[1]}, ${mostCommonColor[2]}, 0.9)`);
         };
+        setLoading(false)
     }, [pokeData])
 
     useEffect(() => {
@@ -65,17 +68,21 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
     }, [])
 
     return(
-        pokeData &&
-        <Link to={"/p/" + name}>
-            <Box
-                sx={{ display: "none" }}
-                component="canvas" 
-                ref={canvasRef}
-            />
-            <SPokeBox color={color}>
-                <Typography variant="h4" color="textSecondary">#{ id } { name }</Typography>
-                <Box component="img" src={pokeData.sprites.front_default}/>
-            </SPokeBox>
-        </Link>
+        loading ?
+        <Skeleton width={"100%"} height={150} variant="rectangular"/> :
+        (
+            pokeData &&
+            <Link to={"/p/" + name}>
+                <Box
+                    sx={{ display: "none" }}
+                    component="canvas" 
+                    ref={canvasRef}
+                />
+                <SPokeBox color={color}>
+                    <Typography variant="h4" color="textSecondary">#{ id } { name }</Typography>
+                    <Box component="img" src={pokeData.sprites.front_default}/>
+                </SPokeBox>
+            </Link>
+        )
     )
 }

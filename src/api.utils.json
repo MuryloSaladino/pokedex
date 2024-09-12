@@ -1,0 +1,5 @@
+{
+    "max_pokemons": 1025,
+    "mega_pokemons_range": [10033, 10090],
+    "page_size": 16
+}
