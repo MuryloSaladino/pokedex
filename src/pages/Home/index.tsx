@@ -46,7 +46,7 @@ export default function Home():ReactNode {
                     ))}
                 </Grid>
 
-                <Box>
+                <Box sx={{ mt: 3, display: "flex", justifyContent: "center" }}>
                     <Pagination 
                         count={Math.round(api_utils.max_pokemons / api_utils.page_size) + 1}
                         defaultPage={Number(query.get("page")) || 1}

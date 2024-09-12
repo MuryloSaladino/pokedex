@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Box, Skeleton, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { SPokeBox } from "./styles";
+import { SPokeBox, SPokeBoxHidden } from "./styles";
 import PokeAPI from "../../../../service/pokeAPI";
 
 interface IPokeCardProps {
@@ -72,7 +72,7 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
             {
                 loading ?
                 <Skeleton width={"100%"} height={150} variant="rectangular"/> :
-                
+
                 pokeData &&
                 <Link to={"/p/" + name}>
                     <Box
@@ -81,8 +81,18 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
                         ref={canvasRef}
                     />
                     <SPokeBox color={color}>
-                        <Typography variant="h4" color="textSecondary">#{ id } { name }</Typography>
+                        <Typography 
+                            variant="h4" 
+                            color="textSecondary" 
+                            sx={{ WebkitTextStroke: "1px grey" }}
+                        >#{ id } { name }</Typography>
                         <Box component="img" src={pokeData.sprites.front_default}/>
+                        <SPokeBoxHidden color={color}>
+                            <Box 
+                                component="img"
+                                src={pokeData.sprites.other.showdown.front_default} 
+                            />
+                        </SPokeBoxHidden>
                     </SPokeBox>
                 </Link>
             }
