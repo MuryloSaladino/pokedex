@@ -67,6 +67,13 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
         getPokeData()
     }, [])
 
+    const playCry = useCallback(async () => {
+        if(pokeData) {
+            const audio = new Audio(pokeData.cries.latest)
+            audio.oncanplay = () => { audio.play() }
+        }
+    }, [pokeData])
+
     return(
         <>
             {
@@ -80,7 +87,7 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
                         component="canvas" 
                         ref={canvasRef}
                     />
-                    <SPokeBox color={color}>
+                    <SPokeBox color={color} onMouseEnter={playCry}>
                         <Typography 
                             variant="h4" 
                             color="textSecondary" 
