@@ -68,21 +68,24 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
     }, [])
 
     return(
-        loading ?
-        <Skeleton width={"100%"} height={150} variant="rectangular"/> :
-        (
-            pokeData &&
-            <Link to={"/p/" + name}>
-                <Box
-                    sx={{ display: "none" }}
-                    component="canvas" 
-                    ref={canvasRef}
-                />
-                <SPokeBox color={color}>
-                    <Typography variant="h4" color="textSecondary">#{ id } { name }</Typography>
-                    <Box component="img" src={pokeData.sprites.front_default}/>
-                </SPokeBox>
-            </Link>
-        )
+        <>
+            {
+                loading ?
+                <Skeleton width={"100%"} height={150} variant="rectangular"/> :
+                
+                pokeData &&
+                <Link to={"/p/" + name}>
+                    <Box
+                        sx={{ display: "none" }}
+                        component="canvas" 
+                        ref={canvasRef}
+                    />
+                    <SPokeBox color={color}>
+                        <Typography variant="h4" color="textSecondary">#{ id } { name }</Typography>
+                        <Box component="img" src={pokeData.sprites.front_default}/>
+                    </SPokeBox>
+                </Link>
+            }
+        </>
     )
 }
