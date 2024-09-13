@@ -13,8 +13,8 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
 
     const [pokeData, setPokeData] = useState<any>()
     const [color, setColor] = useState<string>()
+    const [loading, setLoading] = useState<boolean | string>(true)
     const canvasRef = useRef<HTMLCanvasElement>(null)
-    const [loading, setLoading] = useState(true)
 
     const getPokeData = useCallback(async () => {
         setLoading(true)
@@ -27,7 +27,7 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
         const img = new Image();
         img.crossOrigin = 'Anonymous';
         img.src = pokeData.sprites.front_default;
-        img.onload = () => {
+        img.addEventListener("load", () => {
             const canvas:HTMLCanvasElement|null = canvasRef.current;
             if(!canvas) return;
             const context = canvas?.getContext('2d', { willReadFrequently: true });
@@ -59,8 +59,9 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
                 }
             }
             setColor(`rgba(${mostCommonColor[0]}, ${mostCommonColor[1]}, ${mostCommonColor[2]})`);
-        };
-        setLoading(false);
+            console.log(loading);
+            setLoading(false);
+        })
     }, [pokeData])
 
     useEffect(() => {
@@ -74,30 +75,35 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
         }
     }, [pokeData])
 
-    return loading ?
-    ( <Skeleton width={"100%"} height={150} variant="rectangular"/> ) :
-    (
-        pokeData &&
-        <Link to={"/p/" + name}>
+    return (
+        <>
             <Box
                 sx={{ display: "none" }}
                 component="canvas" 
                 ref={canvasRef}
             />
-            <SPokeBox color={color} onMouseEnter={playCry}>
-                <Typography 
-                    variant="h4" 
-                    color="textSecondary" 
-                    sx={{ WebkitTextStroke: "1px grey" }}
-                >#{ id.toString().padStart(3, "0") } { name }</Typography>
-                <Box component="img" src={pokeData.sprites.front_default}/>
-                <SPokeBoxHidden color={color}>
-                    <Box 
-                        component="img"
-                        src={pokeData.sprites.other.showdown.front_default} 
-                    />
-                </SPokeBoxHidden>
-            </SPokeBox>
-        </Link>
+            {
+                loading || !pokeData ?
+
+                <Skeleton width={"100%"} height={150} variant="rectangular"/> :
+
+                <Link to={"/p/" + name}>
+                    <SPokeBox color={color} onMouseEnter={playCry}>
+                        <Typography 
+                            variant="h4" 
+                            color="textSecondary" 
+                            sx={{ WebkitTextStroke: "1px grey" }}
+                        >#{ id.toString().padStart(3, "0") } { name }</Typography>
+                        <Box component="img" src={pokeData.sprites.front_default}/>
+                        <SPokeBoxHidden color={color}>
+                            <Box 
+                                component="img"
+                                src={pokeData.sprites.other.showdown.front_default} 
+                            />
+                        </SPokeBoxHidden>
+                    </SPokeBox>
+                </Link>
+            }
+        </>
     )
 }
