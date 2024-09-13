@@ -92,7 +92,7 @@ export default function PokeCard({ id, name }:IPokeCardProps) {
                             variant="h4" 
                             color="textSecondary" 
                             sx={{ WebkitTextStroke: "1px grey" }}
-                        >#{ id } { name }</Typography>
+                        >#{ id.toString().padStart(3, "0") } { name }</Typography>
                         <Box component="img" src={pokeData.sprites.front_default}/>
                         <SPokeBoxHidden color={color}>
                             <Box 
